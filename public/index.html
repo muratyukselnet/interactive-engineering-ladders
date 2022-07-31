@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="dist.css" rel="stylesheet">
+    <script src="https://unpkg.com/konva@8.3.5/konva.min.js"></script>
+</head>
+<body>
+<section class="text-gray-600 body-font mx-auto">
+    <div class="container mx-auto flex px-5 pt-12 items-center justify-center flex-col">
+        <div class="text-center lg:w-2/3 w-full">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Interactive Engineering Ladders</h1>
+            <p class="mb-8 leading-relaxed">This is an interactive version of the pentagon introduced by Jorge Fioranelli.
+                You can see his work and more details here:
+                <a href="//www.engineeringladders.com" target="_blank">www.engineeringladders.com</a></p>
+            <button onclick="copyUrl()" class="flex mx-auto text-white bg-indigo-400 border-0 py-1 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Copy Url</button>
+        </div>
+    </div>
+</section>
+<section class="row-auto w-full px-5 py-6" style="text-align: -webkit-center;">
+    <div id="canvas-container" style="width: 600px; height: 600px;"></div>
+</section>
+<script src="js/interaction.js"></script>
+</body>
+</html>
