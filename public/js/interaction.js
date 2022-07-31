@@ -439,17 +439,24 @@ function initialValues()
     positions.system.enhances.x = 356;
     positions.system.enhances.y = 324;
 
+    let urlParams = new URLSearchParams(window.location.search);
+    selected.technology = urlParams.get('technology') ? urlParams.get('technology') : 'creates';
+    selected.influence = urlParams.get('influence') ? urlParams.get('influence') : 'team';
+    selected.process = urlParams.get('process') ? urlParams.get('process') : 'follows';
+    selected.people = urlParams.get('people') ? urlParams.get('people') : 'manages';
+    selected.system = urlParams.get('system') ? urlParams.get('system') : 'enhances';
+
     let points = [];
-    points.push(positions.technology.creates.x);
-    points.push(positions.technology.creates.y);
-    points.push(positions.influence.team.x);
-    points.push(positions.influence.team.y);
-    points.push(positions.process.follows.x);
-    points.push(positions.process.follows.y);
-    points.push(positions.people.manages.x);
-    points.push(positions.people.manages.y);
-    points.push(positions.system.enhances.x);
-    points.push(positions.system.enhances.y);
+    points.push(positions.technology[selected.technology].x);
+    points.push(positions.technology[selected.technology].y);
+    points.push(positions.influence[selected.influence].x);
+    points.push(positions.influence[selected.influence].y);
+    points.push(positions.process[selected.process].x);
+    points.push(positions.process[selected.process].y);
+    points.push(positions.people[selected.people].x);
+    points.push(positions.people[selected.people].y);
+    points.push(positions.system[selected.system].x);
+    points.push(positions.system[selected.system].y);
 
     let layer2 = new Konva.Layer();
     let poly = new Konva.Line({
