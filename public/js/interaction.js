@@ -519,7 +519,7 @@ function updateShare() {
 }
 
 function copyUrl() {
-    let inputCopy = document.body.appendChild(document.createElement("input"));
+    let inputCopy = document.body.children[1].appendChild(document.createElement("input"));
     inputCopy.value = window.location.href;
     inputCopy.focus();
     inputCopy.select();
