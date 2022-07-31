@@ -440,10 +440,10 @@ function initialValues()
     positions.system.enhances.y = 324;
 
     let urlParams = new URLSearchParams(window.location.search);
-    selected.technology = urlParams.get('technology') ? urlParams.get('technology') : 'creates';
-    selected.influence = urlParams.get('influence') ? urlParams.get('influence') : 'team';
+    selected.technology = urlParams.get('technology') ? urlParams.get('technology') : 'adopts';
+    selected.influence = urlParams.get('influence') ? urlParams.get('influence') : 'subsystem';
     selected.process = urlParams.get('process') ? urlParams.get('process') : 'follows';
-    selected.people = urlParams.get('people') ? urlParams.get('people') : 'manages';
+    selected.people = urlParams.get('people') ? urlParams.get('people') : 'learns';
     selected.system = urlParams.get('system') ? urlParams.get('system') : 'enhances';
 
     let points = [];
