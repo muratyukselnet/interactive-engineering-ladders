@@ -518,6 +518,9 @@ function copyUrl() {
     inputCopy.select();
     document.execCommand('copy');
     inputCopy.parentNode.removeChild(inputCopy);
+    let copied = document.getElementById('copied');
+    copied.setAttribute('style', 'display: block');
+    setTimeout(function() { copied.setAttribute('style', 'display: none;'); }, 5000);
 }
 
 function init() {
