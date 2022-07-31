@@ -380,7 +380,7 @@ function initialValues()
 
     positions = { technology: { adopts: {}, specializes: {}, evangelizes: {}, masters: {}, creates: {} },
         influence: { subsystem: {}, team: {}, 'multiple-teams': {}, company: {}, community: {} },
-        process: { follows: {}, enforces: {}, challenges: {}, adjust: {}, defines: {} },
+        process: { follows: {}, enforces: {}, challenges: {}, adjusts: {}, defines: {} },
         people: { learns: {}, supports: {}, mentors: {}, coordinates: {}, manages: {} },
         system: { enhances: {}, designs: {}, owns: {}, evolves: {}, leads: {} } };
 
@@ -399,8 +399,8 @@ function initialValues()
     positions.technology.masters.y = 127;
     positions.influence.company.x = 99;
     positions.influence.company.y = 276;
-    positions.process.adjust.x = 178;
-    positions.process.adjust.y = 516;
+    positions.process.adjusts.x = 178;
+    positions.process.adjusts.y = 516;
     positions.people.coordinates.x = 432;
     positions.people.coordinates.y = 515;
     positions.system.evolves.x = 509;
