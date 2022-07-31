@@ -334,17 +334,24 @@ function createPentagons()
         layer.add(tooltip);
     });
 
-    stage.on('click', function (e) {
-        let item = e.target;
-        if (item.className !== 'Text') {
-            return;
-        }
-        let groupName = item.attrs.groupName;
-        selected[groupName] = item.attrs.id;
-        updateSelectedShape()
-        redrawPentagon(item.attrs.id, groupName)
-        updateShare()
+    stage.on('touchend', function (e) {
+        triggerChange(e);
     });
+    stage.on('click', function (e) {
+        triggerChange(e);
+    });
+}
+
+function triggerChange(e) {
+    let item = e.target;
+    if (item.className !== 'Text') {
+        return;
+    }
+    let groupName = item.attrs.groupName;
+    selected[groupName] = item.attrs.id;
+    updateSelectedShape()
+    redrawPentagon(item.attrs.id, groupName)
+    updateShare()
 }
 
 function redrawPentagon (targetId, groupName) {
