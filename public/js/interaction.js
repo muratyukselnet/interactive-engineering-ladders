@@ -46,6 +46,7 @@ const levels = {
 }
 
 let stage;
+let positions;
 let selected = {
     "technology": 'adopts',
     "influence": 'subsystem',
@@ -160,7 +161,8 @@ function createPentagons()
         radius: biggestRadius * 20/100,
         fill: null,
         stroke: 'black',
-        strokeWidth: 1
+        strokeWidth: 1,
+        opacity: 0.3,
     });
     let pentagon2 = new Konva.RegularPolygon({
         x: shapeHeight,
@@ -169,7 +171,8 @@ function createPentagons()
         radius: biggestRadius * 40/100,
         fill: null,
         stroke: 'black',
-        strokeWidth: 1
+        strokeWidth: 1,
+        opacity: 0.3,
     });
     let pentagon3 = new Konva.RegularPolygon({
         x: shapeHeight,
@@ -178,7 +181,8 @@ function createPentagons()
         radius: biggestRadius * 60/100,
         fill: null,
         stroke: 'black',
-        strokeWidth: 2
+        strokeWidth: 2,
+        opacity: 0.3,
     });
     let pentagon4 = new Konva.RegularPolygon({
         x: shapeHeight,
@@ -187,7 +191,8 @@ function createPentagons()
         radius: biggestRadius * 80/100,
         fill: null,
         stroke: 'black',
-        strokeWidth: 2
+        strokeWidth: 2,
+        opacity: 0.3,
     });
     let pentagon5 = new Konva.RegularPolygon({
         x: shapeHeight,
@@ -196,7 +201,8 @@ function createPentagons()
         radius: biggestRadius,
         fill: null,
         stroke: 'black',
-        strokeWidth: 3
+        strokeWidth: 3,
+        opacity: 0.3,
     });
     layer.add(pentagon1);
     layer.add(pentagon2);
@@ -335,6 +341,7 @@ function createPentagons()
         }
         let groupName = item.attrs.groupName;
         selected[groupName] = item.attrs.id;
+        updateSelectedShape()
         redrawPentagon(item.attrs.id, groupName)
         updateShare()
     });
@@ -370,6 +377,112 @@ function initialValues()
         redrawPentagon(currentLevel, value);
         selected[value] = currentLevel;
     });
+
+    positions = { technology: { adopts: {}, specializes: {}, evangelizes: {}, masters: {}, creates: {} },
+        influence: { subsystem: {}, team: {}, 'multiple-teams': {}, company: {}, community: {} },
+        process: { follows: {}, enforces: {}, challenges: {}, adjust: {}, defines: {} },
+        people: { learns: {}, supports: {}, mentors: {}, coordinates: {}, manages: {} },
+        system: { enhances: {}, designs: {}, owns: {}, evolves: {}, leads: {} } };
+
+    positions.technology.creates.x = 306;
+    positions.technology.creates.y = 72;
+    positions.influence.community.x = 49;
+    positions.influence.community.y = 259;
+    positions.process.defines.x = 146;
+    positions.process.defines.y = 559;
+    positions.people.manages.x = 464;
+    positions.people.manages.y = 558;
+    positions.system.leads.x = 563;
+    positions.system.leads.y = 259;
+
+    positions.technology.masters.x = 306;
+    positions.technology.masters.y = 127;
+    positions.influence.company.x = 99;
+    positions.influence.company.y = 276;
+    positions.process.adjust.x = 178;
+    positions.process.adjust.y = 516;
+    positions.people.coordinates.x = 432;
+    positions.people.coordinates.y = 515;
+    positions.system.evolves.x = 509;
+    positions.system.evolves.y = 276;
+
+    positions.technology.evangelizes.x = 306;
+    positions.technology.evangelizes.y = 179;
+    positions.influence["multiple-teams"].x = 152;
+    positions.influence["multiple-teams"].y = 292;
+    positions.process.challenges.x = 210;
+    positions.process.challenges.y = 472;
+    positions.people.mentors.x = 400;
+    positions.people.mentors.y = 473;
+    positions.system.owns.x = 459;
+    positions.system.owns.y = 293;
+
+    positions.technology.specializes.x = 305;
+    positions.technology.specializes.y = 235;
+    positions.influence.team.x = 203;
+    positions.influence.team.y = 309;
+    positions.process.enforces.x = 242;
+    positions.process.enforces.y = 426;
+    positions.people.supports.x = 367;
+    positions.people.supports.y = 429;
+    positions.system.designs.x = 407;
+    positions.system.designs.y = 308;
+
+    positions.technology.adopts.x = 306;
+    positions.technology.adopts.y = 288;
+    positions.influence.subsystem.x = 253;
+    positions.influence.subsystem.y = 326;
+    positions.process.follows.x = 274;
+    positions.process.follows.y = 386;
+    positions.people.learns.x = 336;
+    positions.people.learns.y = 384;
+    positions.system.enhances.x = 356;
+    positions.system.enhances.y = 324;
+
+    let points = [];
+    points.push(positions.technology.creates.x);
+    points.push(positions.technology.creates.y);
+    points.push(positions.influence.team.x);
+    points.push(positions.influence.team.y);
+    points.push(positions.process.follows.x);
+    points.push(positions.process.follows.y);
+    points.push(positions.people.manages.x);
+    points.push(positions.people.manages.y);
+    points.push(positions.system.enhances.x);
+    points.push(positions.system.enhances.y);
+
+    let layer2 = new Konva.Layer();
+    let poly = new Konva.Line({
+        id: 'selectedShape',
+        points: points,
+        fill: null,
+        stroke: 'black',
+        strokeWidth: 2,
+        opacity: 0.9,
+        closed: true,
+        visible: true,
+        listening: false,
+    });
+    layer2.add(poly);
+    stage.add(layer2);
+}
+
+function updateSelectedShape() {
+
+    let points = [];
+    points.push(positions.technology[selected.technology].x);
+    points.push(positions.technology[selected.technology].y);
+    points.push(positions.influence[selected.influence].x);
+    points.push(positions.influence[selected.influence].y);
+    points.push(positions.process[selected.process].x);
+    points.push(positions.process[selected.process].y);
+    points.push(positions.people[selected.people].x);
+    points.push(positions.people[selected.people].y);
+    points.push(positions.system[selected.system].x);
+    points.push(positions.system[selected.system].y);
+
+    let selectedShape = stage.find('#selectedShape')[0];
+    selectedShape.attrs.points = points;
 }
 
 function updateShare() {
@@ -397,6 +510,7 @@ function copyUrl() {
 function init() {
     createPentagons();
     initialValues();
+    updateSelectedShape();
 }
 
 init();
