@@ -472,6 +472,12 @@ function initialValues()
     });
     layer2.add(poly);
     stage.add(layer2);
+
+    redrawPentagon(selected.technology, 'technology')
+    redrawPentagon(selected.process, 'process')
+    redrawPentagon(selected.system, 'system')
+    redrawPentagon(selected.influence, 'influence')
+    redrawPentagon(selected.people, 'people')
 }
 
 function updateSelectedShape() {
